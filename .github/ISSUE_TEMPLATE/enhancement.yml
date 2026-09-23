@@ -1,0 +1,28 @@
+name: 機能追加
+description: 新しい機能を提案する
+title: ""
+labels:
+  - enhancement
+
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: 追加したい機能を説明してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的
+      description: なぜこの機能が必要ですか？
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 提案内容
+      description: 具体的な実装案があれば記載してください

@@ -1,0 +1,22 @@
+name: READMEなど
+description: ドキュメントを更新する
+title: "【README】"
+labels:
+  - documentation
+
+body:
+  - type: textarea
+    id: overview
+    attributes:
+      label: 概要
+      description: どのドキュメントを、なぜ更新するのか
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: 実装内容
+      description: 具体的にどのような変更を行うか
+    validations:
+      required: true

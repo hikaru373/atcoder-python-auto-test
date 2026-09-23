@@ -1,0 +1,42 @@
+name: バグ報告
+description: バグや問題を記録する
+title: ""
+labels:
+  - bug
+
+body:
+  - type: textarea
+    id: overview
+    attributes:
+      label: 概要
+      description: 発生した問題を簡潔に記載してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 発生例（実際の動作）
+      description: 実際に何が起きたか記載してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 発生例（正しい動作）
+      description: 本来どのような動作になるべきか記載してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: cause
+    attributes:
+      label: 原因候補
+      description: 考えられる原因を記載してください
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 対策案
+      description: 修正方法や対策案を記載してください
