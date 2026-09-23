@@ -21,22 +21,16 @@
 <br><br><br>
 # ⑥ ディレクトリ構成
 <pre>
-atcoder-learning-analyzer
-├── main.py
-├── requirements.txt
+HOME
+├── .gitignore
+├── LICENSE
 ├── README.md
-├── html
-│    ├── input.html
-│    ├── result.html
-│    └── about.html
-├── static
-│    ├── images
-│    │    └──logo_input.ico
-│    └── css
-│         ├── input.css
-│         ├── result.css
-│         └── about.css
-└── TEST.md
+└── .github
+     ├── PULL_REQUEST_TEMPLATE.md
+     └── ISSUE_TEMPLATE
+          ├── bug.yml
+          ├── documentation.yml
+          └── enhancement.yml
 </pre>
 <br><br><br>
 # ⑦ 使用技術
@@ -44,7 +38,7 @@ atcoder-learning-analyzer
 ### 選定理由
 
 <br><br><br>
-# ⑨ 終わりに
+# ⑧ 終わりに
 バグ報告や機能要望などがございましたら、以下よりお気軽にご連絡ください。
 <br>
 - [お問い合わせフォーム](https://forms.gle/PiDUpJXJmxxBMm5K7)
