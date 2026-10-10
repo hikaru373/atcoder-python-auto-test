@@ -1,12 +1,14 @@
+## **※現在Pythonのみの対応となっております。他の言語に関しましては今後実装予定です。**
 # 目次
 1. 概要
 2. 背景
 3. 主な機能
-4. 使い方
-5. ディレクトリ構成
-6. データ構造
-7. 使用技術
-8. 終わりに
+4. セットアップ手順
+5. 使い方
+6. ディレクトリ構成
+7. データ構造
+8. 使用技術
+9. 終わりに
 <br><br><br>
 # ① 概要
 Pythonで作成した自動テストプログラムです。
@@ -21,12 +23,15 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 - 実行結果の判定（AC、WA、RE、TLE）
 - コマンドラインによるファイル・制限時間などを変更可能
 <br><br><br>
-# ④ 使い方
-2026年10月中に説明動画の完成を予定しています。
-## Chrome 拡張機能
-[こちらから](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef?pli=1)
+# ④ セットアップ手順
+2026年10月中に説明動画の完成を予定しています。<br>
+[Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef?pli=1)<br>
+[自動テストプログラム](https://github.com/hikaru373/atcoder-python-auto-test/releases/tag/v1.0.0)
 <br><br><br>
-# ⑤ ディレクトリ構成
+# ⑤ 使い方
+2026年10月中に説明動画の完成を予定しています。<br>
+<br><br><br>
+# ⑥ ディレクトリ構成
 <pre>
 atcoder-python-auto-test
 ├── .gitignore
@@ -42,7 +47,7 @@ atcoder-python-auto-test
 
 </pre>
 <br><br><br>
-# ⑥ データ構造
+# ⑦ データ構造
 入力例と出力例を1組ずつ順番に記述し、複数のサンプルにも対応しています。<br>
 ```
 入力例1
@@ -55,7 +60,7 @@ atcoder-python-auto-test
 ...
 ```
 <br><br><br>
-# ⑦ 使用技術
+# ⑧ 使用技術
 - **フロントエンド**：なし
 - **バックエンド**：Python
 - **データベース**：なし
@@ -67,7 +72,7 @@ atcoder-python-auto-test
 - **Python**：AtCoderで使用する言語として普段から利用しており、実行処理や入出力の比較を簡潔に実装できるため。
 
 <br><br><br>
-# ⑧ 終わりに
+# ⑨ 終わりに
 最後までご覧いただき、ありがとうございました。<br>
 バグ報告や機能要望などがございましたら、以下よりお気軽にご連絡ください。
 <br>
