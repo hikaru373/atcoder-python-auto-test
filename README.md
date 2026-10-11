@@ -24,7 +24,9 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 - コマンドラインによるファイル・制限時間などを変更可能
 <br><br><br>
 # ④ セットアップ手順
-2026年10月中に説明動画の完成を予定しています。<br>
+<video src="https://github.com/user-attachments/assets/381e889b-cf3e-42b6-8e02-e972305d50e7" controls width="100%">
+</video>
+
 [Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef?pli=1)<br>
 [自動テストプログラム](https://github.com/hikaru373/atcoder-python-auto-test/releases/tag/v1.0.0)
 <br><br><br>
