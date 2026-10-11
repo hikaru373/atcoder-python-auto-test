@@ -32,6 +32,9 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 <br><br><br>
 # ⑤ 使い方
 2026年10月中に説明動画の完成を予定しています。<br>
+<br>
+![使い方画像](https://github.com/user-attachments/assets/0f0e34a9-8d03-489f-8e90-073cfef12e14)
+※画像は生成AIを使用して作成しています。
 <br><br><br>
 # ⑥ ディレクトリ構成
 <pre>
