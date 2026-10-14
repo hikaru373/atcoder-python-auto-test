@@ -25,7 +25,7 @@ class AutoTestCase(unittest.TestCase):
     # auto-test.py を実行して標準出力を返す
     def run_script(self, solution, sample, *args):
         (self.dir / "main.py").write_text(solution, encoding="utf-8")
-        (self.dir / "sample.txt").write_text(sample, encoding="utf-8")
+        (self.dir / "sample.txt").write_bytes(sample.encode("utf-8"))
 
         result = subprocess.run(
             [sys.executable, str(SCRIPT), *args],
