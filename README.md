@@ -45,8 +45,12 @@ atcoder-python-auto-test
 ├── LICENSE
 ├── README.md
 ├── auto-test.py
+├── tests
+│    └── test_auto_test.py
 └── .github
      ├── PULL_REQUEST_TEMPLATE.md
+     ├── workflows
+     │    └── ci.yml
      └── ISSUE_TEMPLATE
           ├── bug.yml
           ├── documentation.yml
