@@ -47,7 +47,8 @@ def load_samples(sample_file):
         print(f"エラー: {sample_file} が見つかりません。")
         return None
 
-    text = Path(sample_file).read_text(encoding="utf-8")
+    # BOM付きUTF-8にも対応
+    text = Path(sample_file).read_text(encoding="utf-8-sig")
 
     # Windows改行にも対応
     text = text.replace("\r\n", "\n")
@@ -87,10 +88,10 @@ def run_test(file_path, input_data, time_limit):
 
     try:
         result = subprocess.run(
-            [sys.executable, file_path], # python3より安全な指定
+            [sys.executable, "-X", "utf8", file_path], # 解答側もUTF-8で入出力
             input = input_data,
             capture_output = True,
-            text = True,
+            encoding = "utf-8",
             timeout = time_limit
         )
 
@@ -122,6 +123,9 @@ def run_test(file_path, input_data, time_limit):
 
 
 def main():
+    # Windowsでも日本語・絵文字を表示できるようにする
+    sys.stdout.reconfigure(encoding="utf-8")
+
     args = parse_args()
     file_path, sample_file, time_limit = args
 
