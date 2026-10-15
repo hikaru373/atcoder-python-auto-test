@@ -27,5 +27,3 @@ jobs:
 
       - name: テスト
         run: python -m unittest discover -s tests -v
-        env:
-          PYTHONUTF8: "1"

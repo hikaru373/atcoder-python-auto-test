@@ -31,7 +31,7 @@ class AutoTestCase(unittest.TestCase):
             [sys.executable, str(SCRIPT), *args],
             cwd = self.dir,
             capture_output = True,
-            text = True,
+            encoding = "utf-8",
             timeout = 10
         )
         return result.stdout
@@ -47,6 +47,16 @@ class AutoTestCase(unittest.TestCase):
     def test_crlf_sample(self):
         out = self.run_script(DOUBLE, SAMPLE.replace("\n", "\r\n"))
         self.assertIn("ALL AC (2/2)", out)
+
+    # BOM付きUTF-8
+    def test_bom_sample(self):
+        out = self.run_script(DOUBLE, "\ufeff" + SAMPLE)
+        self.assertIn("ALL AC (2/2)", out)
+
+    # 日本語・絵文字の入出力
+    def test_unicode_io(self):
+        out = self.run_script("print(input() + '🎉')\n", "こんにちは𠮷\n\nこんにちは𠮷🎉\n")
+        self.assertIn("ALL AC (1/1)", out)
 
     # WA
     def test_wa(self):
