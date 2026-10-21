@@ -1,4 +1,8 @@
-## **※現在Pythonのみの対応となっております。他の言語に関しましては今後実装予定です。**
+## 注意
+**※現在Pythonのみの対応となっております。他の言語に関しましては今後実装予定です。** <br>
+**※誤差ありの問題には対応しておりません。今後実装予定です。**
+<br>
+
 # 目次
 1. 概要
 2. 背景
@@ -11,8 +15,12 @@
 9. 終わりに
 <br><br><br>
 # ① 概要
+<video src="https://github.com/user-attachments/assets/af7469ff-66e5-408a-8f07-f7b63d9a6a40" controls width="100%">
+</video>
+
 Pythonで作成した自動テストプログラムです。
-拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。
+拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。<br>
+本サービスの利用により発生した損害や不利益について、開発者は一切の責任を負いません。あらかじめご了承ください。
 <br><br><br>
 # ② 背景
 AtCoderで問題を解く際、サンプル入出力をローカル環境でテストするために、問題ページから入力例・出力例を一つずつコピーする必要がありました。<br>
