@@ -22,7 +22,7 @@ class AutoTestCase(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    # auto-test.py を実行して標準出力を返す
+# auto-test.py を実行して標準出力を返す
     def run_script(self, solution, sample, *args):
         (self.dir / "main.py").write_text(solution, encoding="utf-8")
         (self.dir / "sample.txt").write_bytes(sample.encode("utf-8"))
@@ -36,7 +36,7 @@ class AutoTestCase(unittest.TestCase):
         )
         return result.stdout
 
-    # AC
+# AC
     def test_all_ac(self):
         out = self.run_script(DOUBLE, SAMPLE)
         self.assertIn("Sample 1: AC", out)
@@ -58,13 +58,13 @@ class AutoTestCase(unittest.TestCase):
         out = self.run_script("print(input() + '🎉')\n", "こんにちは𠮷\n\nこんにちは𠮷🎉\n")
         self.assertIn("ALL AC (1/1)", out)
 
-    # WA
+# WA
     def test_wa(self):
         out = self.run_script("print(int(input()) * 3)\n", SAMPLE)
         self.assertIn("Sample 1: WA", out)
         self.assertIn("Result: 0/2 AC", out)
 
- # RE
+# RE
     def test_re(self):
         out = self.run_script("raise ValueError\n", SAMPLE)
         self.assertIn("Sample 1: RE", out)

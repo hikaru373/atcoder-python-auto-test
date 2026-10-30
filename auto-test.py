@@ -23,7 +23,7 @@ def parse_args():
                 value = float(arg[:-2])
             except ValueError:
                 print(f"エラー: メモリ制限の形式が不正です: {arg}")
-                print(f"正しい形式例：MB")
+                print(f"正しい形式例：100MB")
                 sys.exit(1)
             if value <= 0:
                 print("エラー: メモリ制限は0より大きい値を指定してください。")
