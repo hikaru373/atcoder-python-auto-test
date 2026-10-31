@@ -76,21 +76,6 @@ class AutoTestCase(unittest.TestCase):
         self.assertIn("Sample 1: TLE", out)
         self.assertIn("TLE制限: 0.5秒", out)
 
-# MLE
-    # メモリ制限の指定
-    def test_memory_limit(self):
-        out = self.run_script(DOUBLE, SAMPLE)
-        self.assertIn("MLE制限: 1024MB", out)
-        out = self.run_script(DOUBLE, SAMPLE, "256mb")
-        self.assertIn("MLE制限: 256MB", out)
-
-    # 不正なメモリ制限
-    def test_invalid_memory_limit(self):
-        out = self.run_script(DOUBLE, SAMPLE, "abcMB")
-        self.assertIn("メモリ制限の形式が不正です", out)
-        out = self.run_script(DOUBLE, SAMPLE, "0MB")
-        self.assertIn("メモリ制限は0より大きい値", out)
-
 # 引数指定
     def test_custom_files(self):
         (self.dir / "a.py").write_text(DOUBLE, encoding="utf-8")

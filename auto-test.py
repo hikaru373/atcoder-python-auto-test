@@ -7,30 +7,14 @@ from pathlib import Path
 DEFAULT_FILE = "main.py"
 SAMPLE_FILE = "sample.txt"
 TIME_LIMIT = 2.0
-MEMORY_LIMIT = 1024 # MB
 
 # 引数の処理
 def parse_args():
     file_path = DEFAULT_FILE
     sample_file = SAMPLE_FILE
     time_limit = TIME_LIMIT
-    memory_limit = MEMORY_LIMIT
 
     for arg in sys.argv[1:]:
-        # メモリ制限 (例: 256MB)
-        if arg.upper().endswith("MB"):
-            try:
-                value = float(arg[:-2])
-            except ValueError:
-                print(f"エラー: メモリ制限の形式が不正です: {arg}")
-                print(f"正しい形式例：100MB")
-                sys.exit(1)
-            if value <= 0:
-                print("エラー: メモリ制限は0より大きい値を指定してください。")
-                sys.exit(1)
-            memory_limit = value
-            continue
-
         # 秒数
         try:
             value = float(arg)
@@ -55,7 +39,7 @@ def parse_args():
         print(f"エラー: 不明な引数です: {arg}")
         sys.exit(1)
 
-    return file_path, sample_file, time_limit, memory_limit
+    return file_path, sample_file, time_limit
 
 # サンプルを解析
 def load_samples(sample_file):
@@ -143,7 +127,7 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
 
     args = parse_args()
-    file_path, sample_file, time_limit, memory_limit = args
+    file_path, sample_file, time_limit = args
 
     # ファイル存在確認
     if not Path(file_path).exists():
@@ -160,7 +144,6 @@ def main():
     print(f"実行ファイル: {file_path}")
     print(f"サンプル数: {len(samples)}")
     print(f"TLE制限: {time_limit}秒")
-    print(f"MLE制限: {memory_limit:g}MB")
 
     print("=" * 50)
     print()
