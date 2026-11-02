@@ -14,10 +14,6 @@ TIME_LIMIT = 2.0
 # 実行ファイル名（Windowsは.exeが必要）
 EXE = "main.exe" if os.name == "nt" else "main"
 
-# Windowsは静的リンクにしてDLLの読み込みによる起動の遅さを防ぐ
-# Windows以外は空リストにして、引数自体を追加しない
-STATIC = ["-static"] if os.name == "nt" else []
-
 # ウォームアップ実行の制限時間（秒）
 WARMUP_TIME_LIMIT = 5.0
 
@@ -31,7 +27,7 @@ LANGUAGES = {
     },
     ".cpp": {
         "name": "C++",
-        "compile": ["g++", "-std=c++20", "-O2", *STATIC, "-o", "{exe}", "{src}"],
+        "compile": ["g++", "-std=c++20", "-O2", "-o", "{exe}", "{src}"],
         "run": ["{exe}"]
     },
 }
