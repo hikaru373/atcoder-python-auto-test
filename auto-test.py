@@ -14,6 +14,13 @@ TIME_LIMIT = 2.0
 # 実行ファイル名（Windowsは.exeが必要）
 EXE = "main.exe" if os.name == "nt" else "main"
 
+# Windowsは静的リンクにしてDLLの読み込みによる起動の遅さを防ぐ
+# Windows以外は空リストにして、引数自体を追加しない
+STATIC = ["-static"] if os.name == "nt" else []
+
+# ウォームアップ実行の制限時間（秒）
+WARMUP_TIME_LIMIT = 5.0
+
 # 対応言語（拡張子: 言語名, コンパイルコマンド, 実行コマンド）
 # {src}: ソースファイル, {exe}: 実行ファイル
 LANGUAGES = {
@@ -24,7 +31,7 @@ LANGUAGES = {
     },
     ".cpp": {
         "name": "C++",
-        "compile": ["g++", "-std=c++20", "-O2", "-o", "{exe}", "{src}"],
+        "compile": ["g++", "-std=c++20", "-O2", *STATIC, "-o", "{exe}", "{src}"],
         "run": ["{exe}"]
     },
 }
@@ -143,7 +150,23 @@ def build(file_path, work_dir):
         print((result.stderr or result.stdout).strip())
         return None
 
+    warm_up(command)
+
     return command
+
+# 特にWindowsで生成直後の実行ファイルは初回起動が遅いため、計測前に一度だけ空実行する
+def warm_up(command):
+    try:
+        subprocess.run(
+            command,
+            input = "",
+            capture_output = True,
+            encoding = "utf-8",
+            errors = "replace",
+            timeout = WARMUP_TIME_LIMIT
+        )
+    except subprocess.TimeoutExpired:
+        pass
 
 # 解答の実行
 def run_test(command, input_data, time_limit):
