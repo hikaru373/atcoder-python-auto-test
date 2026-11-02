@@ -1,5 +1,8 @@
+import os
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -7,6 +10,24 @@ from pathlib import Path
 DEFAULT_FILE = "main.py"
 SAMPLE_FILE = "sample.txt"
 TIME_LIMIT = 2.0
+
+# 実行ファイル名（Windowsは.exeが必要）
+EXE = "main.exe" if os.name == "nt" else "main"
+
+# 対応言語（拡張子: 言語名, コンパイルコマンド, 実行コマンド）
+# {src}: ソースファイル, {exe}: 実行ファイル
+LANGUAGES = {
+    ".py": {
+        "name": "Python",
+        "compile": None,
+        "run": [sys.executable, "-X", "utf8", "{src}"] # 解答側もUTF-8で入出力
+    },
+    ".cpp": {
+        "name": "C++",
+        "compile": ["g++", "-std=c++20", "-O2", "-o", "{exe}", "{src}"],
+        "run": ["{exe}"]
+    },
+}
 
 # 引数の処理
 def parse_args():
@@ -27,7 +48,7 @@ def parse_args():
             pass
 
         # 実行ファイル
-        if arg.endswith(".py"):
+        if Path(arg).suffix in LANGUAGES:
             file_path = arg
             continue
 
@@ -82,13 +103,55 @@ def normalize_output(text):
         for line in text.strip().splitlines()
     )
 
+# コマンド中の{src}などを置き換える
+def fill_command(command, src, work_dir):
+    return [
+        arg.format(src=src, exe=str(Path(work_dir) / EXE))
+        for arg in command
+    ]
+
+# コンパイルして実行コマンドを返す（失敗時はNone）
+def build(file_path, work_dir):
+    lang = LANGUAGES[Path(file_path).suffix]
+    src = str(Path(file_path).resolve())
+
+    command = fill_command(lang["run"], src, work_dir)
+
+    if lang["compile"] is None:
+        return command
+
+    compile_command = fill_command(lang["compile"], src, work_dir)
+
+    if shutil.which(compile_command[0]) is None:
+        print(f"エラー: {compile_command[0]} が見つかりません。{lang['name']}のコンパイラをインストールしてください。")
+        return None
+
+    # 削除しても良い
+    print("コンパイル中...")
+    
+    result = subprocess.run(
+        compile_command,
+        capture_output = True,
+        encoding = "utf-8",
+        errors = "replace"
+    )
+
+    # コンパイルエラー
+    if result.returncode != 0:
+        print("CE (Compile Error)")
+        print()
+        print((result.stderr or result.stdout).strip())
+        return None
+
+    return command
+
 # 解答の実行
-def run_test(file_path, input_data, time_limit):
+def run_test(command, input_data, time_limit):
     start_time = time.perf_counter()
 
     try:
         result = subprocess.run(
-            [sys.executable, "-X", "utf8", file_path], # 解答側もUTF-8で入出力
+            command,
             input = input_data,
             capture_output = True,
             encoding = "utf-8",
@@ -139,9 +202,20 @@ def main():
     if samples is None:
         return
 
+    with tempfile.TemporaryDirectory() as work_dir:
+        command = build(file_path, work_dir)
+
+        if command is None:
+            return
+
+        run_samples(command, file_path, samples, time_limit)
+
+
+def run_samples(command, file_path, samples, time_limit):
     print("=" * 50)
 
     print(f"実行ファイル: {file_path}")
+    print(f"言語: {LANGUAGES[Path(file_path).suffix]['name']}")
     print(f"サンプル数: {len(samples)}")
     print(f"TLE制限: {time_limit}秒")
 
@@ -158,7 +232,7 @@ def main():
     # 全サンプル実行
     for i, (input_data, expected_output) in enumerate(samples, 1):
 
-        result = run_test(file_path, input_data, time_limit)
+        result = run_test(command, input_data, time_limit)
 
         status = result["status"]
         elapsed_time = result["time"]
