@@ -1,3 +1,4 @@
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -11,6 +12,8 @@ SCRIPT = Path(__file__).resolve().parent.parent / "auto-test.py"
 DOUBLE = "print(int(input()) * 2)\n"
 
 SAMPLE = "3\n\n6\n\n10\n\n20\n"
+
+CPP_DOUBLE = "#include <iostream>\nint main() { int n; std::cin >> n; std::cout << n * 2 << std::endl; }\n"
 
 
 class AutoTestCase(unittest.TestCase):
@@ -32,7 +35,7 @@ class AutoTestCase(unittest.TestCase):
             cwd = self.dir,
             capture_output = True,
             encoding = "utf-8",
-            timeout = 10
+            timeout = 30 # コンパイルを含むため長めに設定
         )
         return result.stdout
 
@@ -93,6 +96,27 @@ class AutoTestCase(unittest.TestCase):
     def test_odd_blocks(self):
         out = self.run_script(DOUBLE, "3\n\n6\n\n10\n")
         self.assertIn("入力と出力の数が一致しません", out)
+
+# C++
+    def run_other(self, file_name, solution):
+        (self.dir / file_name).write_text(solution, encoding="utf-8")
+        return self.run_script("", SAMPLE, file_name)
+
+    @unittest.skipUnless(shutil.which("g++"), "g++がありません")
+    def test_cpp(self):
+        out = self.run_other("main.cpp", CPP_DOUBLE)
+        self.assertIn("言語: C++", out)
+        self.assertIn("ALL AC (2/2)", out)
+
+    @unittest.skipUnless(shutil.which("g++"), "g++がありません")
+    def test_cpp_compile_error(self):
+        out = self.run_other("main.cpp", "int main() { return x; }\n")
+        self.assertIn("CE (Compile Error)", out)
+
+    # 未対応の拡張子
+    def test_unknown_extension(self):
+        out = self.run_script(DOUBLE, SAMPLE, "main.xyz")
+        self.assertIn("エラー: 不明な引数です: main.xyz", out)
 
 
 if __name__ == "__main__":
