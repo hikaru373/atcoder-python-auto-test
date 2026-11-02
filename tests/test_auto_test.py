@@ -35,7 +35,7 @@ class AutoTestCase(unittest.TestCase):
             cwd = self.dir,
             capture_output = True,
             encoding = "utf-8",
-            timeout = 30 # コンパイルを含むため長めに設定
+            timeout = 60 # Windowsではコンパイルに20秒以上かかるため長めに設定
         )
         return result.stdout
 
