@@ -1,5 +1,5 @@
 ## 注意
-**※現在Pythonのみの対応となっております。他の言語に関しましては今後実装予定です。** <br>
+**※対応言語：Python / C++** <br>
 **※誤差ありの問題には対応しておりません。今後実装予定です。**
 <br>
 
@@ -28,7 +28,8 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 <br><br><br>
 # ③ 主な機能
 - 拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)に対応したサンプル入出力の自動テスト
-- 実行結果の判定（AC、WA、RE、TLE）
+- 実行結果の判定（AC、WA、RE、TLE、CE）
+- Python・C++に対応（`.py` `.cpp`）
 - コマンドラインによるファイル・制限時間などを変更可能
 <br><br><br>
 # ④ セットアップ手順
