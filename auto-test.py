@@ -39,6 +39,11 @@ def parse_args():
     time_limit = TIME_LIMIT
 
     for arg in sys.argv[1:]:
+        # 使い方
+        if arg in ("-h", "--help"):
+            print(0)
+            sys.exit(0)
+
         # 秒数
         try:
             value = float(arg)
