@@ -118,6 +118,20 @@ class AutoTestCase(unittest.TestCase):
         out = self.run_script(DOUBLE, SAMPLE, "main.xyz")
         self.assertIn("エラー: 不明な引数です: main.xyz", out)
 
+# 使い方
+    def test_help(self):
+        for flag in ("-h", "--help"):
+            with self.subTest(flag=flag):
+                out = self.run_script(DOUBLE, SAMPLE, flag)
+                self.assertNotIn("Sample", out) # テストは実行しない
+                self.assertNotIn("エラー", out)
+
+    # 他の引数と一緒に指定
+    def test_help_with_other_args(self):
+        out = self.run_script(DOUBLE, SAMPLE, "main.py", "-h")
+        self.assertNotIn("Sample", out)
+        self.assertNotIn("エラー", out)
+
 
 if __name__ == "__main__":
     unittest.main()
