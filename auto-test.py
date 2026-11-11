@@ -32,11 +32,51 @@ LANGUAGES = {
     },
 }
 
+# 使い方の表示
+def print_help():
+    script = Path(__file__).name
+    extensions = " ".join(LANGUAGES)
+    languages = "\n".join(
+        f"  {ext:<6}{lang['name']}"
+        for ext, lang in LANGUAGES.items()
+    )
+
+    print(f"""使い方: python {script} [実行ファイル] [サンプルファイル] [秒数]
+
+AtCoderのサンプル入出力を使って解答を自動テストします。
+引数は順不同で、省略した項目はデフォルト値が使われます。
+
+引数:
+  実行ファイル      テストする解答ファイル（{extensions}）  デフォルト: {DEFAULT_FILE}
+  サンプルファイル  サンプル入出力を書いたファイル（.txt）  デフォルト: {SAMPLE_FILE}
+  秒数              TLE判定の制限時間（0より大きい数値）    デフォルト: {TIME_LIMIT}
+  -h, --help        この使い方を表示して終了
+
+対応言語:
+{languages}
+
+判定:
+  AC   正解
+  WA   不正解
+  TLE  制限時間超過
+  RE   実行時に異常終了
+  CE   コンパイル失敗
+
+例:
+  python {script}
+  python {script} main.cpp
+  python {script} a.py a.txt 3""")
+
 # 引数の処理
 def parse_args():
     file_path = DEFAULT_FILE
     sample_file = SAMPLE_FILE
     time_limit = TIME_LIMIT
+
+    # 使い方（他の引数より優先）
+    if any(arg in ("-h", "--help") for arg in sys.argv[1:]):
+        print_help()
+        sys.exit(0)
 
     for arg in sys.argv[1:]:
         # 秒数
