@@ -38,12 +38,12 @@ def parse_args():
     sample_file = SAMPLE_FILE
     time_limit = TIME_LIMIT
 
-    for arg in sys.argv[1:]:
-        # 使い方
-        if arg in ("-h", "--help"):
-            print(0)
-            sys.exit(0)
+    # 使い方（他の引数より優先）
+    if any(arg in ("-h", "--help") for arg in sys.argv[1:]):
+        print(0)
+        sys.exit(0)
 
+    for arg in sys.argv[1:]:
         # 秒数
         try:
             value = float(arg)
