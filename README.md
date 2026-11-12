@@ -50,6 +50,26 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 
 ![使い方画像](https://github.com/user-attachments/assets/0f0e34a9-8d03-489f-8e90-073cfef12e14)
 ※画像は生成AIを使用して作成しています。
+
+### コマンド
+```
+python auto-test.py [実行ファイル] [サンプルファイル] [秒数]
+```
+引数は順不同で、省略した項目はデフォルト値が使われます。
+
+| 引数 | 説明 | デフォルト |
+| --- | --- | --- |
+| 実行ファイル | テストする解答ファイル（`.py` `.cpp`） | `main.py` |
+| サンプルファイル | サンプル入出力を書いたファイル（`.txt`） | `sample.txt` |
+| 秒数 | TLE判定の制限時間（0より大きい数値） | `2.0` |
+| `-h`, `--help` | 使い方を表示して終了 | |
+
+例：
+```
+python auto-test.py
+python auto-test.py main.cpp
+python auto-test.py a.py a.txt 3
+```
 <br><br><br>
 # ⑥ ディレクトリ構成
 <pre>
