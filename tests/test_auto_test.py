@@ -103,6 +103,14 @@ class AutoTestCase(unittest.TestCase):
         out = self.run_script(DOUBLE, "3\n\n6\n\n10\n")
         self.assertIn("入力と出力の数が一致しません", out)
 
+    # 不正な秒数
+    def test_invalid_time_limit(self):
+        for arg in ("0", "-1", "nan", "inf"):
+            with self.subTest(arg=arg):
+                out = self.run_script(DOUBLE, SAMPLE, arg)
+                self.assertIn("エラー: 秒数は0より大きい値を指定してください。", out)
+                self.assertNotIn("Sample", out)
+
 # C++
     def run_other(self, file_name, solution):
         (self.dir / file_name).write_text(solution, encoding="utf-8")
