@@ -19,15 +19,15 @@
 </video>
 
 Pythonで作成した自動テストプログラムです。
-拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。<br>
+拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。<br>
 本サービスの利用により発生した損害や不利益について、開発者は一切の責任を負いません。あらかじめご了承ください。
 <br><br><br>
 # ② 背景
 AtCoderで問題を解く際、サンプル入出力をローカル環境でテストするために、問題ページから入力例・出力例を一つずつコピーする必要がありました。<br>
-拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と組み合わせることで、AtCoderのサンプルテストをより効率的に実行できるようにすることを目指しています。
+拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)と組み合わせることで、AtCoderのサンプルテストをより効率的に実行できるようにすることを目指しています。
 <br><br><br>
 # ③ 主な機能
-- 拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)に対応したサンプル入出力の自動テスト
+- 拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)に対応したサンプル入出力の自動テスト
 - 実行結果の判定（AC、WA、RE、TLE、CE）
 - Python・C++に対応（`.py` `.cpp`）
 - コマンドラインによるファイル・制限時間などを変更可能
@@ -36,7 +36,7 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 <video src="https://github.com/user-attachments/assets/381e889b-cf3e-42b6-8e02-e972305d50e7" controls width="100%">
 </video>
 
-[Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef?pli=1)<br>
+[Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)<br>
 [自動テストプログラム](https://github.com/hikaru373/atcoder-python-auto-test/releases/latest)
 <br><br><br>
 # ⑤ 使い方
