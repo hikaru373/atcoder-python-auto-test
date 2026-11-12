@@ -214,6 +214,7 @@ def run_test(command, input_data, time_limit):
             input = input_data,
             capture_output = True,
             encoding = "utf-8",
+            errors = "replace",
             timeout = time_limit
         )
 

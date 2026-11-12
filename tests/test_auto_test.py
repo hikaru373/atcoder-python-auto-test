@@ -61,6 +61,12 @@ class AutoTestCase(unittest.TestCase):
         out = self.run_script("print(input() + '🎉')\n", "こんにちは𠮷\n\nこんにちは𠮷🎉\n")
         self.assertIn("ALL AC (1/1)", out)
 
+    # UTF-8でない出力でもクラッシュしない
+    def test_invalid_utf8_output(self):
+        out = self.run_script("import sys\nsys.stdout.buffer.write(bytes([255, 10]))\n", SAMPLE)
+        self.assertIn("Sample 1: WA", out)
+        self.assertIn("Result: 0/2 AC", out)
+
 # WA
     def test_wa(self):
         out = self.run_script("print(int(input()) * 3)\n", SAMPLE)
