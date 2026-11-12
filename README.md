@@ -38,6 +38,10 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 
 [Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)<br>
 [自動テストプログラム](https://github.com/hikaru373/atcoder-python-auto-test/releases/latest)
+
+### 動作環境
+- Python 3.9 以上
+- g++（C++20対応、C++のみ）
 <br><br><br>
 # ⑤ 使い方
 <video src="https://github.com/user-attachments/assets/bc915eb8-0ff6-4da8-ab31-5caa341d4045" controls width="100%">
