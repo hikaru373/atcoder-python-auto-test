@@ -19,15 +19,15 @@
 </video>
 
 Pythonで作成した自動テストプログラムです。
-拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。<br>
+拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)と連携することで、AtCoderのサンプル入出力を利用したテストを効率化できます。<br>
 本サービスの利用により発生した損害や不利益について、開発者は一切の責任を負いません。あらかじめご了承ください。
 <br><br><br>
 # ② 背景
 AtCoderで問題を解く際、サンプル入出力をローカル環境でテストするために、問題ページから入力例・出力例を一つずつコピーする必要がありました。<br>
-拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)と組み合わせることで、AtCoderのサンプルテストをより効率的に実行できるようにすることを目指しています。
+拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)と組み合わせることで、AtCoderのサンプルテストをより効率的に実行できるようにすることを目指しています。
 <br><br><br>
 # ③ 主な機能
-- 拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/bjankhpbegjhlkihejjacecbnhbmhhef?utm_source=item-share-cb)に対応したサンプル入出力の自動テスト
+- 拡張機能[「AtCoder Sample Copy」](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)に対応したサンプル入出力の自動テスト
 - 実行結果の判定（AC、WA、RE、TLE、CE）
 - Python・C++に対応（`.py` `.cpp`）
 - コマンドラインによるファイル・制限時間などを変更可能
@@ -36,8 +36,12 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 <video src="https://github.com/user-attachments/assets/381e889b-cf3e-42b6-8e02-e972305d50e7" controls width="100%">
 </video>
 
-[Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef?pli=1)<br>
+[Chrome 拡張機能](https://chromewebstore.google.com/detail/atcoder-sample-copy/bjankhpbegjhlkihejjacecbnhbmhhef)<br>
 [自動テストプログラム](https://github.com/hikaru373/atcoder-python-auto-test/releases/latest)
+
+### 動作環境
+- Python 3.9 以上
+- g++（C++20対応、C++のみ）
 <br><br><br>
 # ⑤ 使い方
 <video src="https://github.com/user-attachments/assets/bc915eb8-0ff6-4da8-ab31-5caa341d4045" controls width="100%">
@@ -46,6 +50,26 @@ AtCoderで問題を解く際、サンプル入出力をローカル環境でテ�
 
 ![使い方画像](https://github.com/user-attachments/assets/0f0e34a9-8d03-489f-8e90-073cfef12e14)
 ※画像は生成AIを使用して作成しています。
+
+### コマンド
+```
+python auto-test.py [実行ファイル] [サンプルファイル] [秒数]
+```
+引数は順不同で、省略した項目はデフォルト値が使われます。
+
+| 引数 | 説明 | デフォルト |
+| --- | --- | --- |
+| 実行ファイル | テストする解答ファイル（`.py` `.cpp`） | `main.py` |
+| サンプルファイル | サンプル入出力を書いたファイル（`.txt`） | `sample.txt` |
+| 秒数 | TLE判定の制限時間（0より大きい数値） | `2.0` |
+| `-h`, `--help` | 使い方を表示して終了 | |
+
+例：
+```
+python auto-test.py
+python auto-test.py main.cpp
+python auto-test.py a.py a.txt 3
+```
 <br><br><br>
 # ⑥ ディレクトリ構成
 <pre>
