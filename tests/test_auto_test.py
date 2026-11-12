@@ -61,6 +61,12 @@ class AutoTestCase(unittest.TestCase):
         out = self.run_script("print(input() + '🎉')\n", "こんにちは𠮷\n\nこんにちは𠮷🎉\n")
         self.assertIn("ALL AC (1/1)", out)
 
+    # UTF-8でない出力でもクラッシュしない
+    def test_invalid_utf8_output(self):
+        out = self.run_script("import sys\nsys.stdout.buffer.write(bytes([255, 10]))\n", SAMPLE)
+        self.assertIn("Sample 1: WA", out)
+        self.assertIn("Result: 0/2 AC", out)
+
 # WA
     def test_wa(self):
         out = self.run_script("print(int(input()) * 3)\n", SAMPLE)
@@ -96,6 +102,14 @@ class AutoTestCase(unittest.TestCase):
     def test_odd_blocks(self):
         out = self.run_script(DOUBLE, "3\n\n6\n\n10\n")
         self.assertIn("入力と出力の数が一致しません", out)
+
+    # 不正な秒数
+    def test_invalid_time_limit(self):
+        for arg in ("0", "-1", "nan", "inf"):
+            with self.subTest(arg=arg):
+                out = self.run_script(DOUBLE, SAMPLE, arg)
+                self.assertIn("エラー: 秒数は0より大きい値を指定してください。", out)
+                self.assertNotIn("Sample", out)
 
 # C++
     def run_other(self, file_name, solution):

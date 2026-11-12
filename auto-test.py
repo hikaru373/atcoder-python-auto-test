@@ -1,3 +1,4 @@
+import math
 import os
 import shutil
 import subprocess
@@ -82,7 +83,7 @@ def parse_args():
         # 秒数
         try:
             value = float(arg)
-            if value <= 0:
+            if not math.isfinite(value) or value <= 0:
                 print("エラー: 秒数は0より大きい値を指定してください。")
                 sys.exit(1)
             time_limit = value
@@ -214,6 +215,7 @@ def run_test(command, input_data, time_limit):
             input = input_data,
             capture_output = True,
             encoding = "utf-8",
+            errors = "replace",
             timeout = time_limit
         )
 
